@@ -5,7 +5,6 @@
 
 def summation(a, b, c=1, d=1, e=1, *args, **kwargs):
     from random import choice                           # для выбора любого аргумента
-    print(locals())
     return (sum((a, b, c, d)) +
             (sum(args[:2]) if args else 0) +            # первые 2 аргумента из дополнительных позиционных аргументов
             (choice(args[2:]) if args else 0) +         # любой аргумент из дополнительных аргументов (если они есть)
