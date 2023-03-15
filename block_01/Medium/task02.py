@@ -53,8 +53,8 @@ args_dict = {
     'a': 1,
     'c': 3,
     'b': 2,
-    'd': 4,
+    'd': 5,
              }
-print(summation_second(**args_dict))    # output: 10
+print(summation_second(**args_dict))    # output: 11
 # словарь распаковывается в конструкцию вида: a=1, c=3, b=2, d=4 ,
 # таким образом функция получает значения аргументов по ключу.
