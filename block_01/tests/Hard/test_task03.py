@@ -16,7 +16,7 @@ def test_summation_success_02(tpl, expected):
 
 
 @pytest.mark.parametrize("tpl, dct, expected",
-                         [((1, 2, 3, 4, 5, 6, 7, 8, ),  {'f': 9, 'g':10, 'h': 11}, range(39, 43))
+                         [((1, 2, 3, 4, 5, 6, 7, 8, ),  {'f': 9, 'g': 10, 'h': 11}, range(39, 43))
                           ])
 def test_summation_success_03(tpl, dct, expected):
     assert summation(*tpl, **dct) in expected
