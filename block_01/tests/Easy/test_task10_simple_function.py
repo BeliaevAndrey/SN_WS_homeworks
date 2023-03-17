@@ -1,5 +1,5 @@
 import pytest
-
+import re
 
 from block_01.Easy.task01 import simple_function
 
@@ -13,7 +13,6 @@ def test_simple_function_success(test_line: str,
 
 
 def test_simple_function_success_through_var():
-    import re
     random_var = simple_function
     pattern = re.compile("<function simple_function at 0x\\w+>")
     assert pattern.match(random_var.__repr__())
