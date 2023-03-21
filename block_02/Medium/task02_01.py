@@ -75,38 +75,13 @@ def counting_function(func):
     return inner
 
 
-# def run_functions():
-    # test_line1 = 'aaaabbbaabbbbbaaibmn'
-    # test_line2 = 'abcdefghijkkknopqrst'
-    # test_line3 = 'abcdefghijkkktttttttt'
-    # test_line4 = 'zzzzzzzzzabcdefghijkkkt'
-#
-#     print(symbol_counter('b', test_line1), test_line1.count('b'))
-#     print(longest_consequence(test_line1))                          # split case
-#     print(symbol_counter('b', test_line2), test_line2.count('b'))
-#     print(longest_consequence(test_line2))                          # simple case
-#     print(symbol_counter('b', test_line3), test_line3.count('b'))
-#     print(longest_consequence(test_line3))                          # edge case right
-#     print(symbol_counter('b', test_line4), test_line4.count('b'))
-#     print(longest_consequence(test_line4))                          # edge case left
-#
-#     res_lin, res_rec = factorial_linear(1), factorial_rec(1)
-#     print(res_lin, res_rec, res_lin == res_rec)
-#
-#     res_lin, res_rec = factorial_linear(0), factorial_rec(0)
-#     print(res_lin, res_rec, res_lin == res_rec)
-#
-#     res_lin, res_rec = factorial_linear(10), factorial_rec(10)
-#     print(f'{res_lin=:.3e}, {res_rec=:.3e}, {res_lin == res_rec = }')
-#
-#     res_lin, res_rec = factorial_linear(50), factorial_rec(50)
-#     print(f'{res_lin=:.3e}, {res_rec=:.3e}, {res_lin == res_rec = }')
-
-
 def main():
     test_lines = ['aaaa_bbb_aa_bbbbb_aaibmn',
                   'a_b_cdefghijkkknopqrst',
-                  'zzzzzzzzzabcdefghijkkkt', ]
+                  'zzzzzzzzzabcdefghijkkkt',
+                  'abcdefghijkkktttttttt',
+                  'zzzzzzzzzabcdefghijkkkt',
+                  ]
 
     cnt_symbol_counter = counting_function(symbol_counter)
     cnt_longest_consequence = counting_function(longest_consequence)
@@ -122,5 +97,4 @@ def main():
 
 
 if __name__ == '__main__':
-    # run_functions()
     main()
