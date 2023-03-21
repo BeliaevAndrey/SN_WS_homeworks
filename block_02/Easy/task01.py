@@ -1,10 +1,12 @@
 # 1. Реализовать счетчик, который будет увеличиваться каждый раз,
 # когда у нас осуществляется запуск функции суммирования.
+from typing import Callable, Any
 
-def counter(func):
+
+def counter(func) -> Callable:
     count: int = 0
 
-    def inner(*args):
+    def inner(*args) -> Any:
         nonlocal count
         count += 1
         print(f'{count=}')
@@ -12,7 +14,7 @@ def counter(func):
     return inner
 
 
-def summation(*args):
+def summation(*args) -> [int, float]:
     return sum(args)
 
 
