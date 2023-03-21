@@ -1,11 +1,13 @@
 # 2. Написать функцию, внутри которой у нас будет объявляться
 # наша функция суммирования и возвращаться в качестве
 # результата работы из объемлющей функции.
+from typing import Callable
 
-def outer_function():
+
+def outer_function() -> Callable:
     """Объемлющая функция"""
 
-    def summation(*args):
+    def summation(*args) -> [int, float]:
         """Вложенная функция"""
         return sum(args)
 
