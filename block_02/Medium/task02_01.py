@@ -62,6 +62,13 @@ def factorial_rec(number: int) -> int:
     return number * factorial_rec(number - 1)
 
 
+# function 5
+def fibonacci_rec(num: int):
+    if num <= 2:
+        return 1
+    return fibonacci_rec(num - 1) + fibonacci_rec(num - 2)
+
+
 # counter function
 def counting_function(func):
     count = 0
@@ -69,7 +76,7 @@ def counting_function(func):
     def inner(*args):
         nonlocal count
         count += 1
-        print(f'Function {func.__name__} calls: {count}')
+        print(f'Function "{func.__name__}" calls: {count}')
         return func(*args)
 
     return inner
@@ -94,6 +101,9 @@ def main():
     for i in range(5):
         print(cnt_factorial_linear(i))
         print(cnt_factorial_rec(i))
+
+    cnt_fibonacci_rec = counting_function(fibonacci_rec)
+    print(cnt_fibonacci_rec(10))
 
 
 if __name__ == '__main__':

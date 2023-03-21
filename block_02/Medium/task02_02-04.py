@@ -3,11 +3,13 @@
 # результата работы из объемлющей функции.
 
 def outer_function():
+    """Объемлющая функция"""
 
     def summation(*args):
+        """Вложенная функция"""
         return sum(args)
 
-    return summation
+    return summation    # Возврат вложенной функции
 
 
 def main():
