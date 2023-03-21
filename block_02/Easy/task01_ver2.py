@@ -3,26 +3,26 @@
 class CountCalls:
     _count: int
 
-    def __init__(self, start: int = 0):
+    def __init__(self, start: int = 0) -> None:
         self._count = start
 
-    def __iadd__(self, other: int):
+    def __iadd__(self, other: int) -> 'CountCalls':
         self._count = self._count + other
         return self
 
-    def __add__(self, other: int):
+    def __add__(self, other: int) -> 'CountCalls':
         return CountCalls(self._count + other)
 
-    def __int__(self):
+    def __int__(self) -> int:
         return self._count
 
-    def get_calls_amt(self):
+    def get_calls_amt(self) -> int:
         return self._count
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f'Call count: {self._count}'
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f'Call count: {self._count}'
 
 
