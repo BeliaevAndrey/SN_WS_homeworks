@@ -7,6 +7,8 @@ from typing import Callable, Any
 def outer_function() -> [Callable, None]:
 
     def summation(args) -> [int, float]:
+    # def summation(*args) -> [int, float]:
+        print(args)
         return sum(args)
 
     return summation
@@ -20,6 +22,7 @@ def counter(func) -> Callable:
         count += 1
         print(f'Function "{func.__name__}" calls: {count}')
         return func()(args)       # Изменение вызова функции
+        # return func()(*args)       # Изменение вызова функции
 
     return inner
 
