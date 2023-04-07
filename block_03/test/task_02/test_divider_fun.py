@@ -1,6 +1,6 @@
 import pytest
 
-from block_03.task_02.task_02_1 import divider_fun
+from block_03.task_02.task_02_01 import divider_fun
 
 
 @pytest.mark.parametrize("number, divisor, expected", [(10, 5, 2.0),

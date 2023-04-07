@@ -1,6 +1,6 @@
 import pytest
 
-from block_03.task_02.task_02_1 import residues_lister
+from block_03.task_02.task_02_01 import residues_lister
 
 
 @pytest.mark.parametrize("number, divisors, expected", [(10, [3, 4, 5], [1, 2, 0]),
