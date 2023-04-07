@@ -1,9 +1,9 @@
-# 1.1 Написать декоратор, который перед запуском произвольной функции с
-# произвольным набором аргументов будет показывать в консоли сообщение
-# "Покупайте наших котиков!" и возвращать результат запущенной функции
+# 1.2 Параметризовать декоратор таким образом, чтобы сообщение, печатаемое перед
+# выполнением функции можно было задавать как параметр во время декорирования.
 from typing import Callable, Any
 
 ADV = "Покупайте наших котиков!"
+ADV2 = f'\n{"Buy OUR kitties!":^80}'
 
 
 def outer_deco(d_args: Any = ADV) -> Callable:
@@ -24,7 +24,7 @@ def function(num) -> tuple[int]:
     return tuple(primes)
 
 
-@outer_deco(f'\n{"Buy OUR kitties!":^80}')
+@outer_deco(ADV2)
 def function_other(num) -> tuple[int]:
     primes = [2, ] + [n for n in range(3, num, 2)
                       if all([n % d for d in range(2, int(n ** 0.5) + 1)])]
