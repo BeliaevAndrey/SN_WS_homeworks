@@ -23,7 +23,7 @@ def caching_decor(func: Callable):
 
 @caching_decor
 def factorial_calc(number: int) -> int:
-    if number == 0:
+    if number in (0, 1):
         return 1
     result = 1
     while number > 0:
@@ -55,7 +55,7 @@ def main():
     for i in 1, 20, 3, 4, 50:
         factorial_calc(i)
     end3 = _tns() - start
-    print(f'times wasted:'
+    print(f'time wasted:'
           f'\nlap 1: {end1 / 1e9}'
           f'\nlap 2: {end2 / 1e9}'
           f'\nlap 3: {end3 / 1e9}')
@@ -71,7 +71,7 @@ def main():
         factorials_row(i)
     end5 = _tns() - start
 
-    print(f'times wasted: '
+    print(f'time wasted: '
           f'\nlap 1: {end4 / 1e9:.2e}'
           f'\nlap 2: {end5 / 1e9:.2e}')
     print()
