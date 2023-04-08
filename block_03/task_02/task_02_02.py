@@ -14,11 +14,15 @@ def parametric_decor(calls_amt) -> Callable:
             while restarts:
                 restarts -= 1
                 try:
-                    return func(*args)
+                    result = func(*args)
+                    break
                 except Exception as exc:
                     possible_exc = exc
             else:
+                print(f'{restarts=}')
                 raise possible_exc
+            print(f'{restarts=}')
+            return result
 
         return wrapper
 
@@ -26,24 +30,24 @@ def parametric_decor(calls_amt) -> Callable:
 
 
 @parametric_decor(10)
-def divider_fun(numerator: int, denominator: int) -> float:
+def divider_fun_t02_02(numerator: int, denominator: int) -> float:
     return numerator / denominator
 
 
 @parametric_decor(5)
-def residues_lister(number: int, divisors: list[int]) -> list[int]:
+def residues_lister_t02_02(number: int, divisors: list[int]) -> list[int]:
     return [number % div for div in divisors]
 
 
 def main():
-    print(divider_fun(5, 2))
-    print(divider_fun(2, 5))
+    print(divider_fun_t02_02(5, 2))
+    print(divider_fun_t02_02(2, 5))
     try:
-        print(divider_fun(5, 0))
+        print(divider_fun_t02_02(5, 0))
     except Exception as exc:
         print(exc)
-    print(residues_lister(num := 20, [div for div in range(1, num)]))
-    print(residues_lister(num := 20, [div for div in range(num)]))
+    print(residues_lister_t02_02(num := 20, [div for div in range(1, num)]))
+    print(residues_lister_t02_02(num := 20, [div for div in range(num)]))
 
 
 if __name__ == '__main__':
