@@ -1,8 +1,5 @@
 # 3.2 Сделать так, чтобы информация в кэше была актуальной не более 10 секунд.
 # Предусмотреть механизм автоматической очистки кэша в процессе выполнения функций.
-# 3.1 Написать кэширующий декоратор. Суть в том, что если декорируемая функция
-# будет запущена с теми параметрами с которыми она уже запускалась - брать
-# результат из кэша и не производить повторное выполнение функции.
 from typing import Callable
 from time import time_ns as _tns, time
 
@@ -16,16 +13,18 @@ def caching_decor(func: Callable):
 
     def wrapper(*args):
         nonlocal params, results, start
-        if (time() - start) >= TIME_GAP:
-            print(time() - start)
+        if (delta := time() - start) >= TIME_GAP:
+            print(f'SEMAPHORE: time exceeded; delta: {delta:.2e}')
             params = []
             results = []
             start = time()
         if tuple(args) in params:
+            print(f'SEMAPHORE: time normal; result cached; delta: {delta:.2e}')
             return results[params.index(args)]
         result = func(*args)
         params.append(args)
         results.append(result)
+        print(f'SEMAPHORE: time normal; result calculated, delta: {delta:.2e}')
         return result
 
     return wrapper
