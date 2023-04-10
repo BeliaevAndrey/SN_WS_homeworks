@@ -1,12 +1,13 @@
 import pytest
 from time import time_ns as _tns
 
-from block_03.task_03.task_03_02_ver1_5 import factorial_calc
+import block_03.task_03.cus_log
+from block_03.task_03.task_03_02_ver2 import factorial_calc
 
 
-@pytest.mark.parametrize("number, expected, semaphore", [(5, 120, 'SEMAPHORE (v1.5): time normal'),
-                                                         (6, 720, 'SEMAPHORE (v1.5): time normal'),
-                                                         (0, 1, 'SEMAPHORE (v1.5): time normal'),
+@pytest.mark.parametrize("number, expected, semaphore", [(5, 120, 'SEMAPHORE (v2): time normal'),
+                                                         (6, 720, 'SEMAPHORE (v2): time normal'),
+                                                         (0, 1, 'SEMAPHORE (v2): time normal'),
                                                          ])
 def test_factorial_calc_success(number, expected, semaphore, capsys):
     assert (expected == factorial_calc(number))
@@ -14,12 +15,12 @@ def test_factorial_calc_success(number, expected, semaphore, capsys):
     assert (semaphore in deco_answer)
 
 
-@pytest.mark.parametrize("number, semaphore", [(500, 'SEMAPHORE (v1.5): time normal; result calculated'),
-                                               (600, 'SEMAPHORE (v1.5): time normal; result calculated'),
-                                               (500, 'SEMAPHORE (v1.5): time normal; result cached'),
-                                               (600, 'SEMAPHORE (v1.5): time normal; result cached'),
-                                               (400_000, 'SEMAPHORE (v1.5): time normal; result calculated'),
-                                               (600, 'SEMAPHORE (v1.5): time exceeded; result calculated'),
+@pytest.mark.parametrize("number, semaphore", [(500, 'SEMAPHORE (v2): time normal; result calculated'),
+                                               (600, 'SEMAPHORE (v2): time normal; result calculated'),
+                                               (500, 'SEMAPHORE (v2): time normal; result cached'),
+                                               (600, 'SEMAPHORE (v2): time normal; result cached'),
+                                               (400_000, 'SEMAPHORE (v2): time normal; result calculated'),
+                                               (600, 'SEMAPHORE (v2): time exceeded; result calculated'),
                                                ])
 def test_factorial_calc_success_semaphores(number, semaphore, capsys):
     factorial_calc(number)

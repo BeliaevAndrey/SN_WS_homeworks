@@ -13,13 +13,13 @@ def test_factorial_calc_success(number: int, expected: dict):
     assert (expected == factorials_row(number))
 
 
-@pytest.mark.parametrize("number_lap1, number_lap2, expected_comparison", [
+@pytest.mark.parametrize("number_lap1, number_lap2, expected", [
     (500, 500, True),
     (700, 700, True),
     (500, 300, False),
     (500, 100, False),
 ])
-def test_factorial_calc_success_timed(number_lap1, number_lap2, expected_comparison):
+def test_factorial_calc_success_timed(number_lap1, number_lap2, expected):
     start = _tns()
     factorials_row(number_lap1)
     end1 = _tns() - start
@@ -28,4 +28,4 @@ def test_factorial_calc_success_timed(number_lap1, number_lap2, expected_compari
     factorials_row(number_lap2)
     end2 = _tns() - start
     print(end1, end2)
-    assert (expected_comparison == (end1 > end2))
+    assert (expected == (end1 > end2))

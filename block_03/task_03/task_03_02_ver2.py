@@ -3,7 +3,6 @@
 from typing import Callable, Any
 from time import time_ns as _tns, time
 from functools import wraps
-from cus_log import log_deco
 
 TIME_GAP = 10
 
@@ -11,21 +10,19 @@ TIME_GAP = 10
 class Storage:
     """ Storage class for caching decorator. """
     _cache_dct = {}
+    _subst = 'time normal; result calculated;'
 
     @classmethod
-    @log_deco
     def check_func(cls, func_name) -> bool:
         """ A check if function had been  called before. """
         return func_name in cls._cache_dct
 
     @classmethod
-    @log_deco
     def check_para(cls, func_name, params) -> bool:
         """ A check if function has been called with certain parameters before. """
         return params in cls._cache_dct[func_name]['params']
 
     @classmethod
-    @log_deco
     def get_results(cls, func_name, params) -> Any:
         """ Get a results of function if they are not expired. """
         for item in cls._cache_dct[func_name]['info']:
@@ -37,7 +34,6 @@ class Storage:
                     return None
 
     @classmethod
-    @log_deco
     def set_func_results(cls, func_name, params, results) -> None:
         """ Set a results of function if they are absent or expired. """
         if func_name not in cls._cache_dct:
@@ -54,17 +50,22 @@ class Storage:
 
 def caching_decor(func: Callable) -> Callable:
     deco_cache = Storage()
+    fin_str = format('SEMAPHORE (v2): {}')
 
     @wraps(func)
     def wrapper(*args) -> Any:
         nonlocal deco_cache
+        subst = 'time normal; result calculated;'
         if (deco_cache.check_func(func.__name__) and
                 deco_cache.check_para(func.__name__, args)):
+            subst = 'time exceeded; result calculated;'
             if result := deco_cache.get_results(func.__name__, args):
+                print(fin_str.format('time normal; result cached;'))
                 return result
 
         result = func(*args)
         deco_cache.set_func_results(func.__name__, args, result)
+        print(fin_str.format(subst))
         return result
 
     return wrapper
