@@ -10,21 +10,24 @@ def caching_decor(func: Callable):
     params = []
     results = []
     start = time()
+    fin_str = format('SEMAPHORE: {} delta: {:.2e}')
 
     def wrapper(*args):
         nonlocal params, results, start
-        if (delta := time() - start) >= TIME_GAP:
-            print(f'SEMAPHORE: time exceeded; delta: {delta:.2e}')
+        subst = 'time normal; result calculated;'
+        if (delta := time() - start) < TIME_GAP:
+            if tuple(args) in params:
+                print(fin_str.format('time normal; result cached;', delta))
+                return results[params.index(args)]
+        else:
+            subst = 'time exceeded; result calculated;'
             params = []
             results = []
             start = time()
-        if tuple(args) in params:
-            print(f'SEMAPHORE: time normal; result cached; delta: {delta:.2e}')
-            return results[params.index(args)]
         result = func(*args)
         params.append(args)
         results.append(result)
-        print(f'SEMAPHORE: time normal; result calculated, delta: {delta:.2e}')
+        print(fin_str.format(subst, delta))
         return result
 
     return wrapper
